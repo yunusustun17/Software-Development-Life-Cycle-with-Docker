@@ -6,6 +6,6 @@ sudo docker-compose down
 
 sudo rm -rf data/*
 
-sudo docker build . -t jenkins
+sudo docker-compose build
 
 sudo docker-compose up -d
