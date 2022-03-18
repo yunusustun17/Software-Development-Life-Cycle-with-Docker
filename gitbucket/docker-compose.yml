@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9001:8080"
+      - "29418:29418"
     container_name: gitbucket
     volumes:
-     - ./data:/gitbucket/gitbucket
+     - ./data:/gitbucket
