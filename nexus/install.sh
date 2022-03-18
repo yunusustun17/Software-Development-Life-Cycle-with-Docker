@@ -1,12 +1,10 @@
 #!/bin/bash
 
-chmod 666 /var/run/docker.sock
+docker-compose down
 
 mkdir data
 
 chmod -R 777 data
-
-docker-compose down
 
 rm -rf data/*
 
