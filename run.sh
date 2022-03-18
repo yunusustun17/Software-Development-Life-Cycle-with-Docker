@@ -11,3 +11,11 @@ cd ..
 cd portainer
 bash install.sh
 cd ..
+
+cd sonarqube
+bash install.sh
+cd ..
+
+cd gitbucket
+bash install.sh
+cd ..
