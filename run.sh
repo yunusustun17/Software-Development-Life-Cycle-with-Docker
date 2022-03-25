@@ -1,21 +1,6 @@
 #!/bin/bash
 
-cd jenkins
-bash install.sh
-cd ..
-
-cd nexus
-bash install.sh
-cd ..
-
-cd portainer
-bash install.sh
-cd ..
-
-cd sonarqube
-bash install.sh
-cd ..
-
-cd gitbucket
-bash install.sh
-cd ..
+mkdir data
+chmod 777 -R data
+docker-compose build
+docker-compose up -d

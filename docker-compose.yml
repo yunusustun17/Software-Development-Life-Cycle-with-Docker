@@ -1,0 +1,69 @@
+version: '3.8'
+services:
+  sonarqube:
+    build:
+      context: ./sonarqube
+      dockerfile: Dockerfile
+    container_name: sonarqube
+    ports:
+      - "9002:9000"
+    volumes:
+      - ./data/sonarqube/data:/opt/sonarqube/data
+      - ./data/sonarqube/logs:/opt/sonarqube/logs
+      - ./data/sonarqube/extensions:/opt/sonarqube/extensions
+
+  portainer:
+    build:
+      context: ./portainer
+      dockerfile: Dockerfile
+    restart: always
+    container_name: portainer
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/portainer:/data
+
+  nexus:
+    build:
+      context: ./nexus
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+      - 8082:8082
+      - 8083:8083
+    container_name: nexus
+    volumes:
+      - ./data/nexus:/nexus-data
+
+  jenkins:
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    #image: jenkins
+    ports:
+      - 8080:8080
+      #- 50000:50000
+    container_name: jenkins
+    environment:
+      - JENKINS_ADMIN_ID=admin
+      - JENKINS_ADMIN_PASSWORD=admin
+      - JENKINS_SERVER_IP=localhost
+    volumes:
+      - ./data/jenkins:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  gitbucket:
+    build: 
+      context: ./gitbucket
+      dockerfile: Dockerfile
+    ports:
+      - "9001:8080"
+      - "29418:29418"
+    container_name: gitbucket
+    volumes:
+     - ./data/gitbucket:/gitbucket
+networks:
+  default:
+    name: sdlc
