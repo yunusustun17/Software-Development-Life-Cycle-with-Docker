@@ -11,3 +11,6 @@ services:
     container_name: nexus
     volumes:
      - ./data:/nexus-data
+networks:
+  default:
+    name: sdlc

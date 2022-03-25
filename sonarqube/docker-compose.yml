@@ -11,3 +11,6 @@ services:
       - ./data/data:/opt/sonarqube/data
       - ./data/logs:/opt/sonarqube/logs
       - ./data/extensions:/opt/sonarqube/extensions
+networks:
+  default:
+    name: sdlc
